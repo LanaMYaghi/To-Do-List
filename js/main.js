@@ -125,31 +125,159 @@ const deleteUser = async (userUrl, id) => {
     });
 };
 
+/////////////////////////////////////////////////////////////////
+const taskUrl = "http://localhost:3000/tasks";
+
+// GET all tasks
+const getTasks = async (taskUrl) => {
+  return fetch(`${taskUrl}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
+// GET single task by id
+const getTaskById = async (taskUrl, id) => {
+  return fetch(`${taskUrl}/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch task");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
+// POST create task
+const createTask = async (taskUrl, task) => {
+  return fetch(`${taskUrl}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to create task");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
+// PUT update task (full replace)
+const updateTask = async (taskUrl, id, task) => {
+  return fetch(`${taskUrl}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update task");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
+// PATCH update task (partial update)
+const patchTask = async (taskUrl, id, task) => {
+  return fetch(`${taskUrl}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to patch task");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
+// DELETE task
+const deleteTask = async (taskUrl, id) => {
+  return fetch(`${taskUrl}/${id}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to delete task");
+      }
+      return true;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
+
 
 
 
 // run all operations
 
-// const singleUser = await getUserById(userUrl, "ci5RLpkhU78");
-// console.log("Single user:", singleUser);
+// const singleTask = await getTaskById(taskUrl, "ci5RLpkhU78");
+// console.log("Single task:", singleTask);
 
-// const newUser = await createUser(userUrl, {
+// const newTask = await createTask(taskUrl, {
 //   name: "John",
 //   email: "john@example.com",
 // });
-// console.log("Created user:", newUser);
+// console.log("Created user:", newTask);
 
-const users = await getUsers(userUrl);
-console.log("All users:", users);
+// const tasks = await getUsers(taskUrl);
+// console.log("All users:", tasks);
 
-// const updatedUser = await updateUser(userUrl, "ci5RLpkhU78", {
+// const updatedTask = await updateTask(taskUrl, "ci5RLpkhU78", {
 //   name: "lana Updated",
 //   email: "john@example.com",
 // });
-// console.log("Updated user:", updatedUser);
+// console.log("Updated task:", updatedTask);
 
-// const patchedUser = await patchUser(userUrl, "ci5RLpkhU78", { name: "John Patched" });
-// console.log("Patched user:", patchedUser);
+// const patchedTask = await patchTask(taskUrl, "ci5RLpkhU78", { name: "John Patched" });
+// console.log("Patched task:", patchedTask);
 
-// const isDeleted = await deleteUser(userUrl, "mvmv8iVOCAU");
+// const isDeleted = await deleteTask(taskUrl, "mvmv8iVOCAU");
 // console.log("Deleted:", isDeleted);
