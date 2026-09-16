@@ -253,8 +253,32 @@ const deleteTask = async (taskUrl, id) => {
     });
 };
 
+//User's task
+const getUserTasks = async (taskUrl, userId) => {
+  return fetch(`${taskUrl}?userId=${userId}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch user's tasks");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
 
+const newTask = await createTask(taskUrl, {
+  nameTask: "JohnTask",
+  userId: "WqEenoLeXxc",
+});
+console.log("Created task:", newTask);
 
+const tasks = await getUserTasks(taskUrl, "WqEenoLeXxc");
+console.log("User's tasks:", tasks);
 
 // run all operations
 
@@ -281,3 +305,97 @@ const deleteTask = async (taskUrl, id) => {
 
 // const isDeleted = await deleteTask(taskUrl, "mvmv8iVOCAU");
 // console.log("Deleted:", isDeleted);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+/* const parseTableAhmad = (id) => {
+  const table = document.getElementById(id);
+  const headers = table.querySelectorAll("thead tr th");
+  const headersArray = Array.from(headers).map((elem) => {
+    return elem.innerHTML;
+  });
+
+  const dataRows = table.querySelectorAll("tbody tr");
+  const dataRowsArray = Array.from(dataRows).map((row) => {
+    const data = row.querySelectorAll("td");
+    const person = {};
+    Array.from(data).map((td, i) => {
+      person[headersArray[i]] = td.innerHTML;
+    });
+    return person;
+  });
+  return dataRowsArray;
+};
+
+const renderTableLana = (id, data) => {
+  const table = document.getElementById(id);
+  table.innerHTML = "";
+  // create table header
+  const header = document.createElement("thead");
+  const tr = document.createElement("tr");
+  Object.keys(data[0]).map((key) => {
+    const th1 = document.createElement("th");
+    th1.innerHTML = key;
+    tr.append(th1);
+  });
+  header.append(tr);
+  table.append(header);
+  // create table body
+  const body = document.createElement("tbody");
+  data.map((trObj) => {
+    const trs = document.createElement("tr");
+    Object.values(trObj).map((d) => {
+      const td = document.createElement("td");
+      td.innerHTML = d;
+      trs.append(td);
+    });
+    body.append(trs);
+  });
+  table.append(body);
+
+  const inputFilterJamal = document.createElement("input");
+  inputFilterJamal.addEventListener("input", (e) => {
+    let seachText = e.target.value.trim();
+    const trs = Array.from(table.querySelectorAll("tbody tr"));
+    trs.map((tr) => {
+      if (!tr.textContent.includes(seachText)) {
+        tr.style.display = "none";
+      } else {
+        tr.style.display = "";
+      }
+    });
+  });
+  table.before(inputFilterJamal);
+};
+
+// ---------- "Add" button: read form, create user, re-render ----------
+const addBtn = document.querySelector("#addBtn"); // adjust selector to your button
+
+addBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  // adjust these selectors/names to match your actual form fields
+  const name = document.querySelector("#name").value.trim();
+  const email = document.querySelector("#email").value.trim();
+
+  if (!name || !email) {
+    console.error("Name and email are required");
+    return;
+  }
+
+  const newUser = { name, email };
+
+  try {
+    await createUser(url, newUser);
+
+    // after successful create, re-fetch full list from server and re-render
+    const users = await getUsers(url);
+    renderTableLana("myTable", users);
+
+    // optional: clear the form
+    document.querySelector("#name").value = "";
+    document.querySelector("#email").value = "";
+  } catch (error) {
+    console.error("Failed to add user:", error);
+  }
+}); */
