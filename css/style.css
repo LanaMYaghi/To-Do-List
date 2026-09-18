@@ -1,0 +1,126 @@
+/* ---------------- Modal Overlay ---------------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ---------------- Modal Box ---------------- */
+.modal-box {
+  width: 450px;
+  max-width: 90%;
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------- Header ---------------- */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  border: none;
+  background: none;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ---------------- Form ---------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0069b5;
+  box-shadow: none;
+}
+
+/* ---------------- Footer ---------------- */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cancel-btn {
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+}
+
+.submit-btn {
+  border: none;
+  background: #0069b5;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #00528e;
+}
+
+/* ---------------- Tables (Users & Tasks) ---------------- */
+#usersTable,
+#tasksTable {
+  width: 100%;
+  margin-top: 25px;
+  border-collapse: collapse;
+}
+
+#usersTable th,
+#usersTable td,
+#tasksTable th,
+#tasksTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+#usersTable th,
+#tasksTable th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+}
